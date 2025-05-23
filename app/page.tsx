@@ -317,7 +317,7 @@ export default function LandingPage() {
         </p>
         
         <form onSubmit={handleFormSubmit} ref={ctaFormRef} className="relative flex flex-col sm:flex-row items-stretch w-full max-w-2xl mx-auto space-y-3 sm:space-y-0 sm:space-x-3 mb-8 group">
-            <div className="relative w-full sm:flex-grow flex items-center bg-[hsl(var(--secondary)/0.2)] rounded-xl sm:rounded-r-none border border-transparent focus-within:border-[hsl(var(--primary)/0.5)] focus-within:bg-[hsl(var(--secondary)/0.3)] transition-all duration-300 shadow-md focus-within:shadow-lg focus-within:shadow-[hsl(var(--primary)/0.2)]">
+            <div className="relative w-full sm:flex-grow flex items-center bg-[hsl(var(--secondary)/0.2)] rounded-xl sm:rounded-r-none border border-[hsl(var(--border)/0.5)] hover:border-[hsl(var(--primary)/0.4)] focus-within:border-[hsl(var(--primary))] focus-within:bg-[hsl(var(--secondary)/0.3)] transition-all duration-300 shadow-md focus-within:shadow-lg focus-within:shadow-[hsl(var(--primary)/0.2)] focus-within:ring-2 focus-within:ring-[hsl(var(--primary)/0.3)]">
                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 text-[hsl(var(--muted-foreground)/0.6)] group-focus-within:text-[hsl(var(--primary))] transition-colors duration-300" />
                 <Input 
                     ref={ctaEmailInputRef}
@@ -326,9 +326,9 @@ export default function LandingPage() {
                     onChange={(e) => setEmail(e.target.value)}
                     onFocus={() => setInputLineFocused(true)}
                     onBlur={() => setInputLineFocused(false)}
-                    placeholder="your.email@gmail.com"
+                    placeholder="Enter Your Email!"
                     aria-label="Email for waitlist"
-                    className={`appearance-none flex-grow h-[72px] pl-14 pr-6 bg-transparent text-[hsl(var(--foreground))] placeholder:text-[hsl(var(--muted-foreground)/0.7)] focus:ring-0 focus-visible:outline-none transition-all duration-300 ease-in-out text-lg rounded-xl sm:rounded-r-none border-none peer ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    className={`appearance-none flex-grow h-[72px] pl-14 pr-6 bg-transparent text-[hsl(var(--foreground))] placeholder:text-[hsl(var(--muted-foreground)/0.7)] focus:ring-0 focus-visible:outline-none transition-all duration-300 ease-in-out text-lg rounded-xl sm:rounded-r-none peer ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
                     disabled={isSubmitting}
                 />
                 <div className={`absolute bottom-0 left-0 w-full h-[3px] bg-transparent rounded-full overflow-hidden transition-all duration-300 ease-out ${inputLineFocused ? 'bg-[hsl(var(--primary))] scale-x-100' : 'scale-x-0 group-hover:scale-x-100 peer-focus:scale-x-100'} origin-left`}>
@@ -384,19 +384,38 @@ export default function LandingPage() {
 
       <div 
         ref={typewriterSectionRef} 
-        className="relative z-0 w-full max-w-3xl xl:max-w-4xl mx-auto my-16 md:my-24 p-1 sm:p-2 rounded-[2rem] bg-gradient-to-tr from-[hsl(var(--primary)/0.2)] via-[hsl(var(--background)/0.1)] to-[hsl(var(--accent)/0.15)] shadow-2xl border border-[hsl(var(--primary)/0.25)] overflow-hidden group transition-all duration-500 hover:shadow-[0_0_100px_-20px_hsla(var(--primary),0.35)]"
+        className="w-full flex justify-center items-center my-16 md:my-24 px-4"
       >
-        <div className="relative p-8 md:p-12 rounded-[calc(2rem-0.25rem)] sm:rounded-[calc(2rem-0.5rem)] bg-[hsl(var(--background)/0.8)] backdrop-blur-md">
-            <div className="flex justify-center items-center mb-8 text-center">
-                <Brain className="w-10 h-10 md:w-12 md:h-12 text-[hsl(var(--primary))] mr-3 md:mr-4 shrink-0 opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
-                <h2 className="text-3xl md:text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[hsl(var(--primary)/0.9)] to-[hsl(var(--accent)/0.9)]">
-                    Ask FriedmannAI Anything
-                </h2>
-            </div>
-            <div className="min-h-[7em] md:min-h-[5em] p-5 md:p-6 rounded-2xl bg-[hsl(var(--secondary)/0.6)] border border-[hsl(var(--border)/0.3)] shadow-inner relative overflow-hidden ">
-                <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] pointer-events-none"></div>
-                <span ref={typewriterTextRef} className="block text-lg md:text-xl text-[hsl(var(--foreground))] leading-relaxed font-mono whitespace-pre-wrap select-none"></span>
-                <span className="inline-block text-2xl text-[hsl(var(--primary))] ml-0.5 opacity-0 animate-blink-cursor select-none" style={{ animationName: 'blink-cursor-anim' }}>|</span>
+        <div className="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[10px] rounded-[2.5rem] h-[700px] w-[350px] shadow-xl group">
+            <div className="w-[140px] h-[12px] bg-gray-800 top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute"></div>
+            <div className="h-[32px] w-[3px] bg-gray-800 absolute -left-[13px] top-[64px] rounded-l-lg"></div>
+            <div className="h-[32px] w-[3px] bg-gray-800 absolute -left-[13px] top-[124px] rounded-l-lg"></div>
+            <div className="h-[46px] w-[3px] bg-gray-800 absolute -right-[13px] top-[100px] rounded-r-lg"></div>
+            <div className="rounded-[2rem] overflow-hidden w-full h-full bg-gray-900">
+                <div className="w-full h-full flex flex-col relative isolate bg-gradient-to-br from-[hsl(var(--primary)/0.1)] via-[hsl(var(--background)/0.5)] to-[hsl(var(--accent)/0.15)] backdrop-blur-sm">
+                    <div className="absolute inset-0 noise-overlay opacity-20 pointer-events-none -z-10"></div>
+                    
+                    <div className="py-3 px-4 flex items-center border-b border-[hsl(var(--border)/0.2)] bg-[hsl(var(--secondary)/0.3)] backdrop-blur-md">
+                        <Brain className="w-7 h-7 text-[hsl(var(--primary))] mr-2 shrink-0 opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
+                        <h2 className="text-lg font-semibold text-[hsl(var(--foreground))]">FriedmannAI</h2>
+                    </div>
+
+                    <div className="flex-grow p-4 space-y-3 overflow-y-auto">
+                        <div className="flex justify-start">
+                            <div className="max-w-[70%] bg-[hsl(var(--secondary)/0.8)] backdrop-blur-sm text-[hsl(var(--foreground))] p-3 rounded-xl rounded-bl-none shadow-md border border-[hsl(var(--border)/0.2)]">
+                                <p className="text-sm">Hey there! I&apos;m FriedmannAI. Ask me any personal finance question, or question about your group savings plan with Manulife!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="p-3 border-t border-[hsl(var(--border)/0.2)] bg-[hsl(var(--secondary)/0.2)] backdrop-blur-md">
+                        <div className="min-h-[5em] p-4 rounded-xl bg-[hsl(var(--secondary)/0.6)] border border-[hsl(var(--border)/0.4)] shadow-inner relative overflow-hidden">
+                            <div className="absolute inset-0 bg-grid-pattern opacity-[0.04] pointer-events-none"></div>
+                            <span ref={typewriterTextRef} className="block text-base text-[hsl(var(--foreground))] leading-relaxed font-mono whitespace-pre-wrap select-none"></span>
+                            <span className="inline-block text-xl text-[hsl(var(--primary))] ml-0.5 opacity-0 animate-blink-cursor select-none" style={{ animationName: 'blink-cursor-anim' }}>|</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
       </div>
