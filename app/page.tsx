@@ -6,7 +6,7 @@ import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { TextPlugin } from 'gsap/TextPlugin'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { ArrowRight, Zap, Sparkles, CheckCircle, AlertTriangle, Mail, MessageSquare, Brain } from 'lucide-react'
+import { ArrowRight, Zap, Sparkles, CheckCircle, AlertTriangle, Mail, Brain } from 'lucide-react'
 import Image from 'next/image'
 
 gsap.registerPlugin(ScrollToPlugin, TextPlugin)
@@ -58,6 +58,12 @@ export default function LandingPage() {
     if (ctaFormRef.current && ctaEmailInputRef.current) {
       gsap.to(window, { duration: 1, scrollTo: { y: ctaFormRef.current, offsetY: 100 }, ease: 'power2.inOut' })
       setTimeout(() => ctaEmailInputRef.current?.focus({ preventScroll: true }), 1000)
+    }
+  }
+
+  const handleSeeHowItWorksClick = () => {
+    if (typewriterSectionRef.current) {
+      gsap.to(window, { duration: 1, scrollTo: { y: typewriterSectionRef.current, offsetY: 100 }, ease: 'power2.inOut' })
     }
   }
 
@@ -212,9 +218,10 @@ export default function LandingPage() {
 
   useEffect(() => {
     if (!typewriterTextRef.current) return;
-    let mainTl = gsap.timeline({ repeat: -1, repeatDelay: 1.5 });
+    const currentTypewriterTextRef = typewriterTextRef.current;
+    const mainTl = gsap.timeline({ repeat: -1, repeatDelay: 1.5 });
     pharmacistQuestions.forEach((question) => {
-      const textElement = typewriterTextRef.current;
+      const textElement = currentTypewriterTextRef;
       if (textElement) {
         const tl = gsap.timeline();
         tl.to(textElement, { 
@@ -237,7 +244,7 @@ export default function LandingPage() {
     });
     return () => {
       mainTl.kill();
-      gsap.killTweensOf(typewriterTextRef.current);
+      gsap.killTweensOf(currentTypewriterTextRef);
     };
   }, []);
 
@@ -343,6 +350,7 @@ export default function LandingPage() {
             <Button 
                 variant="link" 
                 size="lg"
+                onClick={handleSeeHowItWorksClick}
                 className="text-[hsl(var(--muted-foreground))/0.8] hover:text-[hsl(var(--primary))] transition-colors duration-200 group text-base font-medium py-2"
             >
                 <Zap className="mr-2 h-4 w-4 text-[hsl(var(--primary))/0.7] group-hover:text-[hsl(var(--primary))] transition-colors duration-200" /> See How It Works 
